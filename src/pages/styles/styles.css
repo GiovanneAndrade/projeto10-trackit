@@ -1,0 +1,15 @@
+.root{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e5e5e5e8;;
+}
+.img-inicio{
+margin-left: 97px;
+margin-top: 67px;
+}
+a{
+  text-decoration: none;
+
+
+}
