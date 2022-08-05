@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import React, { useState } from "react"
 import{DivHabito, BotaoAdd, H1, P} from './StylesHabitos'
 import Base from '../../component/base/Base'
@@ -8,6 +8,7 @@ import CadastrarHabito from './cadastrar-habitos/CadastrarHabito'
 
 
 const Habitos = () => {
+  const tokenHabito = useLocation()
   const [selected, setSelected] = useState(false)
   function BotaoAdicionar (){
     setSelected(true)
@@ -18,18 +19,18 @@ const Habitos = () => {
   return (
 
     <>
-    
+   
    <Nav/>
    <DivHabito>
      <H1>
-     Meus hábitos
+     ola mundo
      </H1>
      <BotaoAdd onClick={ BotaoAdicionar }>  +  </BotaoAdd> 
     
      
     </DivHabito>
     <P>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</P>
-    { !selected ? ( <></> ) :   <CadastrarHabito selected={selected} setSelected={setSelected} />}
+    { !selected ? ( <></> ) :   <CadastrarHabito tokenSelecionado={tokenHabito.state.token}selected={selected} setSelected={setSelected} />}
    <Base/>
 
    

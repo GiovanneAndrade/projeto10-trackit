@@ -1,15 +1,39 @@
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from "react"
-
+import axios from 'axios';
 import { Container, Input, Button, P} from './Styles';
 import dayjs, { Dayjs } from 'dayjs'
 
 
 const Home = () => {
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  let resposta;
+  const logim = {
+    email: email,
+    password: senha
+  }
+  
+ function handleForm (e){
+    e.preventDefault();
+    console.log(logim)
+    navigate("/Habitos", {state:
+      {
+       token: resposta.token
+      } })
+ }
+ axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', logim)
+    .then((res) =>{
+      resposta = res.data
+       
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
+  
  
-  
-  
   
   console.log(dayjs().format('dddd')  )
   
@@ -18,21 +42,22 @@ const Home = () => {
   return (
     
   <>
- 
-   <img className='img-inicio' src="/image/Group 8.png"/>
+ <form onSubmit={handleForm}> 
+    <img className='img-inicio' src="/image/Group 8.png"/>
     <Container>
-    <Input type="email" placeholder="email" />
-    <Input type="senha" placeholder='senha'/>
+    <Input   required placeholder="email" onChange={(e)=> setEmail(e.target.value)}/>
+    <Input   required placeholder='senha'onChange={(e)=> setSenha(e.target.value)}/>
     </Container>
-    <Link to={"/Habitos"}>
-        <Button>Entrar</Button>
-     </Link>
+    
+        <Button type='submit'  >Entrar</Button>
+     
     <Link to={"/Registro"}>
       <P>Não tem uma conta? Cadastre-se!</P>
     </Link>
     <h1>
-   
+    
     </h1>
+ </form>
   </>
    
   )

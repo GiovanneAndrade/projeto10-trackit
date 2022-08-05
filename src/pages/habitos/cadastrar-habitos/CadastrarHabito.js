@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import axios from 'axios';
 import{DivCadastro, Cancelar, Salvar, DivBtns, Day, DaySemana, Input2} from './CadastraStyles'
 import { Input } from '../../pagina-inicial/home/Styles'
 
@@ -46,31 +47,31 @@ function BotaoSemana ({numero, dia}){
 }
 
 
-const CadastrarHabito = ({selected, setSelected}) => {
+const CadastrarHabito = ({selected, setSelected, tokenSelecionado}) => {
   const [nome, setNome] = useState('')
    
  
   function handleForm(e){
     e.preventDefault();
-    
+    const config = {
+      headers: {
+          Authorization: `Bearer ${tokenSelecionado}`,
+      },
+  };
     Recolher()
-    fetch('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits',{
-      
-        method: 'POST',
-        body: JSON.stringify(cadastroHabito),
-        headers:{ 'content-type': 'application/json',  identifier: "8b7aa095-b342-417e-bca1-09712f7deb67"},
-      })
-      .then(Response => Response.json())
-      .then(json => console.log(json))
-      .catch((err) => console.log(err));
+      axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', cadastroHabito, config)
+    .then(() =>{
+      console.log('deu certo')
+    })
+    .catch((err) =>{
+      console.log(err)
+    })
   }
   const name = {
     name: nome,
   }
   
   const cadastroHabito ={
-
-	
     name: nome,
     days: selecionarDia
   }
