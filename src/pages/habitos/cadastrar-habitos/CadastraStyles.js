@@ -44,7 +44,7 @@ export const Day = Styled.div`
 min-width: 30px;
 min-height: 30px;
 font-size: 19.976px;
-background: #FFFFFF;
+background: #fff;
 border: 1px solid #D5D5D5;
 border-radius: 5px;
 color: #DBDBDB;
@@ -57,7 +57,7 @@ cursor: pointer;
 export const DaySemana = Styled.div`
 display: flex;
 gap: 4px;
-margin-right:24px;
+margin-right:58px;
 padding-bottom: 29px;
 `
 export const Input2 = Styled.input`
