@@ -29,6 +29,20 @@ export const P = Styled.p`
 margin-left:17px;
 margin-top:20px;
 `
+export const Input3 = Styled.input`
+width: 300px;
+height: 45px;
+margin-bottom:6px;
+margin-top:15px;
+background: #FFFFFF;
+border: 1px solid #D5D5D5;
+border-radius: 5px;
+  ::placeholder{
+    padding:11px;
+    font-size: 19.976px;
+    color: #666666;
+  }
+`
 
 
 export default DivHabito

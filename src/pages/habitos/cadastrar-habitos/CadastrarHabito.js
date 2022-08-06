@@ -57,7 +57,7 @@ const CadastrarHabito = ({selected, setSelected, tokenSelecionado}) => {
       headers: {
           Authorization: `Bearer ${tokenSelecionado}`,
       },
-  };
+    };
     Recolher()
       axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', cadastroHabito, config)
     .then(() =>{
@@ -110,6 +110,7 @@ const CadastrarHabito = ({selected, setSelected, tokenSelecionado}) => {
 
       </DivCadastro>
     </form>
+    
     </>
     
   )

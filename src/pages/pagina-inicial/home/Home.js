@@ -45,8 +45,8 @@ const Home = () => {
  <form onSubmit={handleForm}> 
     <img className='img-inicio' src="/image/Group 8.png"/>
     <Container>
-    <Input   required placeholder="email" onChange={(e)=> setEmail(e.target.value)}/>
-    <Input   required placeholder='senha'onChange={(e)=> setSenha(e.target.value)}/>
+    <Input  type="email" required placeholder="email" onChange={(e)=> setEmail(e.target.value)}/>
+    <Input type="password"  required placeholder='senha'onChange={(e)=> setSenha(e.target.value)}/>
     </Container>
     
         <Button type='submit'  >Entrar</Button>

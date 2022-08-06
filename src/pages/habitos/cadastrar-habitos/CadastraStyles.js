@@ -2,9 +2,9 @@ import Styled from "styled-components";
 
 export const DivCadastro =Styled.div` 
 width: 340px;
-height: 180px;
+min-height: 91px;
 margin-left: 17px;
-margin-top: 20px;
+margin-top: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -37,6 +37,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 gap: 23px;
+margin-bottom:10px;
+
 margin-left:115px;
 margin-right:16px;
 `
@@ -58,7 +60,7 @@ export const DaySemana = Styled.div`
 display: flex;
 gap: 4px;
 margin-right:58px;
-padding-bottom: 29px;
+padding-bottom: 19px;
 `
 export const Input2 = Styled.input`
 width: 300px;
