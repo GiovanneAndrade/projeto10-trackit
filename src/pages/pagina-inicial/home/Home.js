@@ -4,9 +4,18 @@ import React, { useState } from "react"
 import axios from 'axios';
 import { Container, Input, Button, P} from './Styles';
 import dayjs, { Dayjs } from 'dayjs'
+import {Cadastro} from '../../../servidores/Servers' 
+import { Login } from '../../../servidores/Servers';
+import { AuthContext } from '../../../providers/auth';
 
 
-const Home = () => {
+
+
+const Home = (props) => {
+ const { PostLogin} = React.useContext(AuthContext)
+ 
+ 
+
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
@@ -19,34 +28,27 @@ const Home = () => {
  function handleForm (e){
     e.preventDefault();
     console.log(logim)
-    navigate("/Habitos", {state:
-      {
-       token: resposta.token
-      } })
+    navigate("/Habitos")
+
+      PostLogin(logim)
  }
- axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', logim)
-    .then((res) =>{
-      resposta = res.data
-       
-    })
-    .catch((err) =>{
-      console.log(err)
-    })
+   
   
  
   
-  console.log(dayjs().format('dddd')  )
+ 
   
   
  
   return (
-    
-  <>
+   
+ <>
  <form onSubmit={handleForm}> 
     <img className='img-inicio' src="/image/Group 8.png"/>
     <Container>
     <Input  type="email" required placeholder="email" onChange={(e)=> setEmail(e.target.value)}/>
     <Input type="password"  required placeholder='senha'onChange={(e)=> setSenha(e.target.value)}/>
+   
     </Container>
     
         <Button type='submit'  >Entrar</Button>
@@ -58,7 +60,10 @@ const Home = () => {
     
     </h1>
  </form>
+
+ 
   </>
+   
    
   )
 }

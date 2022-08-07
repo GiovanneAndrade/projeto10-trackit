@@ -19,15 +19,17 @@ const cadastro = {
     e.preventDefault();
     console.log(cadastro)
     navigate("/")
- }
 
- axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', cadastro)
-    .then((res) =>{
-      console.log(res)
-    })
-    .catch((err) =>{
-      console.log(err)
-    })
+   axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', cadastro)
+  .then((res) =>{
+    console.log("certo")
+  })
+  .catch((err) =>{
+    console.log(err)
+  })
+  }
+
+  
 
   return (
     <>

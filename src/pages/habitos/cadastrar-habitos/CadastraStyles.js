@@ -6,12 +6,13 @@ min-height: 91px;
 margin-left: 17px;
 margin-top: 10px;
 display: flex;
-flex-direction: column;
-align-items: center;
  
+align-items: center;
+flex-direction: column;
 background: #FFFFFF;
 border-radius: 5px;
 `
+
 export const Cancelar = Styled.button`
 width: 84px;
 font-size: 15.976px;

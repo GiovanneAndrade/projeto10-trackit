@@ -6,6 +6,24 @@ export const DivHabito = Styled.div`
  justify-content: space-between;
  margin-top:20px;
 `
+export const DivFlex =Styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+
+` 
+export const  Div1  = Styled.div`
+width: 340px;
+min-height: 91px;
+margin-left: 17px;
+margin-top: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #FFFFFF;
+border-radius: 5px;
+`
+
 export const BotaoAdd = Styled.div`
 width: 40px;
 height: 35px;

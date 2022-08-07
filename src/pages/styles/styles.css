@@ -13,3 +13,20 @@ a{
 
 
 }
+.verde{
+  width: 69px;
+height: 69px;
+cursor: pointer;
+color: #8FC549;
+border-radius: 5px;
+}
+.iconHoje{
+  margin-right: 13px;
+}
+.cinza{
+  width: 69px;
+height: 69px;
+cursor: pointer;
+color: #E7E7E7;
+border-radius: 5px;
+}
