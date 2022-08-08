@@ -81,7 +81,7 @@ const CadastrarHabito = ({selected, setSelected}) => {
     name: nome,
     days: selecionarDia
   }
-  console.log(cadastroHabito)
+ 
   function Recolher (){
     if(name.name !== ''){
       setSelected(false);

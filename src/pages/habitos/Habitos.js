@@ -9,6 +9,7 @@ import Nav from '../../component/navBar/Nav'
 import CadastrarHabito from './cadastrar-habitos/CadastrarHabito'
 import { AuthContext } from '../../providers/auth'
  import {BsTrash} from 'react-icons/bs';
+ import { ThemeProvider } from "styled-components"
  
 
 
@@ -18,6 +19,7 @@ const Habitos = () => {
    
   const [selected, setSelected] = useState(false)
   const [lista, setLista] = useState([])
+
   function BotaoAdicionar (){
     setSelected(true)
     if(selected === true){
@@ -68,6 +70,7 @@ const Habitos = () => {
     
   )
   function Lista (){
+    
     const DiasSemana =[
       {numero:0, dia:'D'},
       {numero:1, dia:'S'},
@@ -76,16 +79,24 @@ const Habitos = () => {
       {numero:4, dia:'Q'},
       {numero:5, dia:'S'},
       {numero:6, dia:'S'},
-    ]
+    ] 
+ 
+
     return<>
     
     {lista.map(item =>(
       <Div1>
         <DivFlex>
            <div> {item.name}</div>
-          <DaySemana > <Day >D</Day> <Day >S</Day>  
-          <Day >T</Day><Day >Q</Day> <Day >Q</Day> <Day >S</Day> <Day >S</Day>
+            { DiasSemana.map((i)=>{
+          <DaySemana > 
+              <ThemeProvider theme={item.days.includes(i.numero) ? 'red' : 'blue'}>
+                <Day>{i.dia}</Day>
+              </ThemeProvider >
+             
           </DaySemana>
+            })}
+           
         </DivFlex>
         <div><BsTrash/></div>
       </Div1>
