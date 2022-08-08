@@ -6,7 +6,10 @@ const Historico = () => {
   return (
     <>
      <Nav/>
-    <div>Historico</div>
+     <div className="hist">
+      <h2>Historico</h2>
+     </div>
+     <p className='p'>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
     <Base/>
     </>
    

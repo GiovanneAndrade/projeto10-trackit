@@ -28,6 +28,9 @@ padding-right: 36px;
 export const Pcentral = Styled.p`
 font-size: 17.976px;
 color: #FFFFFF;
+display: flex;
+align-items: center;
+justify-content: center;
 `
 export const DivInt = Styled.div`
 width: 79px;

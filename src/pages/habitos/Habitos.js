@@ -19,7 +19,7 @@ const Habitos = () => {
    
   const [selected, setSelected] = useState(false)
   const [lista, setLista] = useState([])
-
+  const [loading, setLoading] = useState(false)
   function BotaoAdicionar (){
     setSelected(true)
     if(selected === true){
@@ -36,6 +36,7 @@ const Habitos = () => {
   };
    console.log(config)
    useEffect(() => {
+    setLoading(true)
     axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config)
     .then((response)=>{
       setLista(response.data)
@@ -44,7 +45,8 @@ const Habitos = () => {
     .catch((e)=>{
       console.log(e)
     });
-    },[token])
+    setLoading(false)
+    },[token,loading])
   return (
 
     <>
@@ -58,7 +60,7 @@ const Habitos = () => {
     
      
     </DivHabito>
-    <P>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</P>
+    
     { !selected ? ( <></> ) :   <CadastrarHabito selected={selected} setSelected={setSelected} />}
     
     <Base/>
@@ -89,10 +91,12 @@ const Habitos = () => {
           Authorization: `Bearer ${token}`,
       },
     };
+    setLoading(true);
      axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${item.id}`, config)
      .then((response)=>{
       console.log('certo')
-      setLista((preve)=>preve.filter((item)=>item.id !== item.id))
+      setLista((preve)=>preve.filter((it)=>it.id !== it.id))
+      setLoading(false);
     })
     .catch((e)=>{
       console.log(e)
@@ -106,7 +110,7 @@ const Habitos = () => {
            <div> {item.name}</div>
            <DaySemana > 
             { DiasSemana.map((i)=>(
-                <Day style={{background: item.days.includes(i.numero) ? '' : '#CFCFCF'}} >{i.dia}</Day>
+                <Day style={{background: item.days.includes(i.numero) ? '#CFCFCF' : ''}} >{i.dia}</Day>
               ))}
               </DaySemana>
            

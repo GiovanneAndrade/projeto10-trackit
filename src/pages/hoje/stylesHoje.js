@@ -14,6 +14,7 @@ background: #FFFFFF;
 border-radius: 5px;
 `
 export const H2 = Styled.h2` 
+margin-top:20px;
 margin-left: 17px;
 font-size: 22.976px;
 color: #126BA5;

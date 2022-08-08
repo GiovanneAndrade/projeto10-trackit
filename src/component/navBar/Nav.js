@@ -1,12 +1,17 @@
 import React from 'react'
+import { AuthContext } from '../../providers/auth'
 import{ NavBar, H1, Img } from  './NavStyles'
 
+
+
  const Nav = () => {
+  const {image} = React.useContext(AuthContext)
+  console.log(image)
   return (
     <>
    <NavBar>
     <H1>TrackIt</H1>
-    <Img src="/image/Rectangle 14.png"  />
+    <Img src= {image}  />
    </NavBar>
     </>
     

@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400&family=Playball&display=swap');
+*{
+  padding:0 ;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Lexend Deca', sans-serif;
+}
 .root{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e5e5e5e8;;
+  background: #e5e5e5e8;
 }
 .img-inicio{
 margin-left: 97px;
@@ -10,8 +17,6 @@ margin-top: 67px;
 }
 a{
   text-decoration: none;
-
-
 }
 .verde{
   width: 69px;
@@ -32,4 +37,31 @@ border-radius: 5px;
 }
 .bst{
   cursor: pointer;
+  margin-bottom: 50px;
 }
+.loand{
+  width: 303px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hist{
+width: 375px;
+height: 70px;
+color: #126BA5;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.hist h2{
+  margin-right: 258px;
+  margin-left: 15px;
+}
+.p{
+margin-left: 15px;
+font-family: 'Lexend Deca';
+font-size: 17.976px;
+color: #666666;
+}
+ 

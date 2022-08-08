@@ -15,35 +15,34 @@ const Hoje = () => {
   
   const { token } = React.useContext(AuthContext)
   const [hoje, setHoje] = useState([])
-  const [ cor, setCor] = useState('cinza')
   const [id, setId ] = useState('')
+  const [loading, setLoading] = useState(false)
   console.log(id)
   console.log(hoje)
- function TrocaCor (cor, item){
-  setCor('cinza') 
-  if (cor == 'cinza'){
-    setCor('verde')
-     
-
-      const config = {
-      headers: {
-           'accept' : 'application/json',
-          'Content-Type' : 'application/json', 
-          Authorization: `Bearer ${token}`
-      },
-    };
+ function TrocaCor (index, item){
+  hoje[index].done = !(hoje[index].done);
     
+    if (item.done){
+     
+        const config = {
+        headers: {
+            'accept' : 'application/json',
+            'Content-Type' : 'application/json', 
+            Authorization: `Bearer ${token}`
+        },
+      };
+      setLoading(true)
       axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${item.id}/check`, {}, config)
       .then((response)=>{
         console.log(  response)
+        setLoading(false)
       })
       .catch((e)=>{
         console.log('erro')
       }); 
-      
-
   }
-  if (cor == 'verde'){
+
+  if (item.done === false) {
     const config = {
       headers: {
           'accept' : 'application/json',
@@ -51,10 +50,11 @@ const Hoje = () => {
           Authorization: `Bearer ${token}`,
       },
     };
-    
+    setLoading(true)
       axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${item.id}/uncheck`, {}, config)
       .then((response)=>{
         console.log(  'certo')
+        setLoading(false)
       })
       .catch((e)=>{
         console.log(e)
@@ -70,25 +70,18 @@ const Hoje = () => {
     switch (dayjs().format('dddd')){
       case 'Sunday':
        return('Domingo')
-      
-      case 'Sunday':
-        console.log ('Sabado')
-      break;
+      case 'Monday':
+       return ('Segunda')
+      case 'third':
+       return ('Terça')
+      case 'fourth':
+       return ('Quarta')
+      case 'Thursday':
+       return ('Quinta')
+      case 'friday':
+       return ('Sexta')
       case 'Saturday':
-        console.log ('Sabado')
-      break;
-      case 'Saturday':
-        console.log ('Sabado')
-      break;
-      case 'Saturday':
-        console.log ('Sabado')
-      break;
-      case 'Saturday':
-        console.log ('Sabado')
-      break;
-      case 'Saturday':
-        console.log ('Sabado')
-      break;
+       return ('Sabado')
     }
     
  }
@@ -105,12 +98,13 @@ const Hoje = () => {
    setHoje(response.data)
    hoje.map((item) => {
     setId(item.id)
+    setLoading(false)
    })
   })
   .catch(()=>{
     console.log('error')
   });
-  },[token]) 
+  },[token, loading]) 
    
   return (
     <>
@@ -120,7 +114,7 @@ const Hoje = () => {
     <H2>
     {Hoje()}, {dayjs().format('DD/MM')}
     </H2>
-    <H3>Nenhum hábito concluído ainda</H3>
+     
     <Base/>
     { hoje.map((item, index) =>(
       <Div1 key={index}>  
@@ -129,7 +123,7 @@ const Hoje = () => {
           <Phoje>Sequência atual: {item.currentSequence} dias</Phoje>
           <Phoje>Seu recorde: {item.highestSequence} dias</Phoje>
         </Div2>
-       <div className='iconHoje'><BsCheckSquareFill onClick={()=> TrocaCor(cor, item)} className={cor}/></div>
+       <div className='iconHoje'><BsCheckSquareFill onClick={()=> TrocaCor(index, item)} className={item.done ? 'verde' : 'cinza'}/></div>
       </Div1> 
     )) }
     

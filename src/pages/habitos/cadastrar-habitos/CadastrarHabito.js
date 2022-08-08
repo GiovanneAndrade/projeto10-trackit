@@ -4,6 +4,8 @@ import axios from 'axios';
 import{DivCadastro, Cancelar, Salvar, DivBtns, Day, DaySemana, Input2, DivFlex} from './CadastraStyles'
 import { Input } from '../../pagina-inicial/home/Styles'
 import { AuthContext } from '../../../providers/auth';
+import { Carregando } from '../../../component/carregando/Carregando';
+
 
 
 let selecionarDia = []
@@ -16,6 +18,7 @@ const DiasSemana =[
   {numero:5, dia:'S'},
   {numero:6, dia:'S'},
 ]
+
 
 function BotaoSemana ({numero, dia}){
   
@@ -53,10 +56,11 @@ const CadastrarHabito = ({selected, setSelected}) => {
   const {token} = React.useContext(AuthContext)
   console.log(token)
   const [nome, setNome] = useState('')
-   
+  const [loading, setLoadind] = useState(false)
  
   function handleForm(e){
     e.preventDefault();
+    setLoadind(true)
     const config = {
       headers: {
         'accept' : 'application/json',
@@ -68,9 +72,12 @@ const CadastrarHabito = ({selected, setSelected}) => {
       axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', cadastroHabito, config)
     .then(() =>{
       console.log('deu certo')
+      selecionarDia=[]
     })
     .catch((err) =>{
       console.log(err)
+      alert('Preencha os campos corretamente')
+      setLoadind(false)
     })
   }
   const name = {
@@ -113,7 +120,7 @@ const CadastrarHabito = ({selected, setSelected}) => {
               Cancelar
             </Cancelar>
             
-            <Salvar  type="submit" onClick={handleForm} >Salvar</Salvar>
+            <Salvar  type="submit" onClick={handleForm} > {loading?<Carregando/> :'Salvar'}</Salvar>
           </DivBtns>
         
          

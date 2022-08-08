@@ -36,8 +36,8 @@ cursor: pointer;
  
 `
 export const P = Styled.p`
-margin-left: 74px;
-
+margin-left: 55px;
+margin-top:25px;
 color: #52B6FF;
 cursor: pointer;
 

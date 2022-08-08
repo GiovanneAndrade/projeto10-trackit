@@ -17,10 +17,9 @@ export const H1 = Styled.h1`
 width: 97px;
 height: 49px;
 margin-left: 18px;
-padding-top: 10px;
+
 font-family: 'Playball';
-font-style: normal;
-font-weight: 400;
+ 
 font-size: 38.982px;
 line-height: 49px;
 color: #FFFFFF;
@@ -28,7 +27,10 @@ color: #FFFFFF;
 
 `
 export const Img = Styled.img`
-padding-right: 18px
+ 
+width: 51px;
+height: 51px;
+border-radius: 98px;
 `
 
 export default NavBar
