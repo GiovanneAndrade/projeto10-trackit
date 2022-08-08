@@ -6,7 +6,6 @@ min-height: 91px;
 margin-left: 17px;
 margin-top: 10px;
 display: flex;
- 
 align-items: center;
 flex-direction: column;
 background: #FFFFFF;
@@ -39,7 +38,6 @@ align-items: center;
 justify-content: center;
 gap: 23px;
 margin-bottom:10px;
-
 margin-left:115px;
 margin-right:16px;
 `

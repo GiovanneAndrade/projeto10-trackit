@@ -7,22 +7,11 @@ import {AuthProvider} from './providers/auth'
 
 
 function Lista() {
-   
     return (
-       <Root>
-           
-         <AuthProvider>
-          <App/>
-         </AuthProvider>
-           
-        
-          
-        
-           
-           
-        
-         
-
+       <Root> 
+        <AuthProvider>
+         <App/>
+        </AuthProvider>
        </Root>
     );
 }

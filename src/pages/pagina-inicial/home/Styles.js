@@ -1,9 +1,7 @@
 import Styled from "styled-components";
-
 export const Container = Styled.div`
 display: flex;
 flex-direction: column;
-
 `
 export const  Input = Styled.input`
 width: 300px;
@@ -14,7 +12,6 @@ background: #FFFFFF;
 border: 1px solid #D5D5D5;
 border-radius: 5px;
   ::placeholder,
- 
   ::-webkit-input-placeholder {
     
     padding-left: 11px;
@@ -33,16 +30,12 @@ border-radius: 4.63636px;
 border: none;
 margin-left: 36px;
 cursor: pointer;
- 
 `
 export const P = Styled.p`
 margin-left: 55px;
 margin-top:25px;
 color: #52B6FF;
 cursor: pointer;
-
 `
  
-
-
 export default Container 

@@ -1,11 +1,9 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios';
-import{DivCadastro, Cancelar, Salvar, DivBtns, Day, DaySemana, Input2, DivFlex} from './CadastraStyles'
-import { Input } from '../../pagina-inicial/home/Styles'
+import{DivCadastro, Cancelar, Salvar, DivBtns, Day, DaySemana, Input2} from './CadastraStyles'
 import { AuthContext } from '../../../providers/auth';
 import { Carregando } from '../../../component/carregando/Carregando';
-
 
 
 let selecionarDia = []
@@ -19,17 +17,11 @@ const DiasSemana =[
   {numero:6, dia:'S'},
 ]
 
-
 function BotaoSemana ({numero, dia}){
-  
   const [color, setColor] = useState('#fff')
-  console.log(selecionarDia)
-  
-  
+
   function Color (){
-    
-    selecionarDia.push(numero)
-   
+   selecionarDia.push(numero)
    setColor('#CFCFCF')
    if(color === '#CFCFCF'){
     setColor('#fff')
@@ -37,30 +29,24 @@ function BotaoSemana ({numero, dia}){
     selecionarDia = selecionarDia.filter((item) => {
     return item !== remove
     })
-    
    }
-   
   }
   
   return(
     <>
      <Day onClick={ Color} style={{ background: dia ? color :''}}  >{dia}</Day> 
     </>
-  
-  
   )
 }
 
-
-const CadastrarHabito = ({selected, setSelected}) => {
+const CadastrarHabito = ({selected, setSelected, loading, setLoading}) => {
   const {token} = React.useContext(AuthContext)
-  console.log(token)
   const [nome, setNome] = useState('')
-  const [loading, setLoadind] = useState(false)
+ 
  
   function handleForm(e){
     e.preventDefault();
-    setLoadind(true)
+    setLoading(true)
     const config = {
       headers: {
         'accept' : 'application/json',
@@ -69,15 +55,15 @@ const CadastrarHabito = ({selected, setSelected}) => {
       },
     };
     Recolher()
+    setLoading(true)
       axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', cadastroHabito, config)
     .then(() =>{
-      console.log('deu certo')
       selecionarDia=[]
+      setLoading(false)
     })
     .catch((err) =>{
-      console.log(err)
       alert('Preencha os campos corretamente')
-      setLoadind(false)
+      setLoading(false)
     })
   }
   const name = {
@@ -94,42 +80,28 @@ const CadastrarHabito = ({selected, setSelected}) => {
       setSelected(false);
     }
   }
-  
-
   return (
-    
   <>
- 
   <form  >
       <DivCadastro>
-    
+        <Input2 type="text" required  placeholder='nome do hábito' onChange={(e)=> setNome(e.target.value)}/>
+        <DaySemana>
+          { DiasSemana.map((item, index) =>( <BotaoSemana key={index} numero={item.numero} dia={item.dia}/>)) }
+        </DaySemana>
         
-       
-          <Input2 type="text" required  placeholder='nome do hábito' onChange={(e)=> setNome(e.target.value)}/>
-          <DaySemana>
-            { DiasSemana.map((item, index) =>( <BotaoSemana key={index} numero={item.numero} dia={item.dia}/>)) }
-          </DaySemana>
-          
-          <DivBtns>
-            <Cancelar onClick={
-              function Voltar (){
-              if(selected === true){
-                setSelected(false);
-              }
-              }} >
-              Cancelar
-            </Cancelar>
-            
-            <Salvar  type="submit" onClick={handleForm} > {loading?<Carregando/> :'Salvar'}</Salvar>
-          </DivBtns>
-        
-         
-
-         
+        <DivBtns>
+          <Cancelar onClick={
+            function Voltar (){
+            if(selected === true){
+              setSelected(false);
+            }
+            }} >
+            Cancelar
+          </Cancelar>
+          <Salvar  type="submit" onClick={handleForm} > {loading?<Carregando/> :'Salvar'}</Salvar>
+        </DivBtns>
       </DivCadastro>
-     
     </form>
-    
     </>
     
   )

@@ -2,11 +2,9 @@ import React from 'react'
 import { AuthContext } from '../../providers/auth'
 import{ NavBar, H1, Img } from  './NavStyles'
 
-
-
- const Nav = () => {
+const Nav = () => {
   const {image} = React.useContext(AuthContext)
-  console.log(image)
+ 
   return (
     <>
    <NavBar>
