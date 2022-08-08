@@ -61,6 +61,10 @@ border-radius: 5px;
     color: #666666;
   }
 `
+export const Color = Styled.div` 
+color: #FFFFFF;
+background-color: red;
+`
 
 
 export default DivHabito

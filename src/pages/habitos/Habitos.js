@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import React, { useState, useEffect } from "react"
-import{DivHabito, BotaoAdd, H1, P, Input3, DivFlex, Div1} from './StylesHabitos'
+import{DivHabito, BotaoAdd, H1, P, Input3, DivFlex, Div1, Color} from './StylesHabitos'
 import{DivCadastro, DaySemana, Day} from './cadastrar-habitos/CadastraStyles'
 import Base from '../../component/base/Base'
 import Nav from '../../component/navBar/Nav'
@@ -80,25 +80,38 @@ const Habitos = () => {
       {numero:5, dia:'S'},
       {numero:6, dia:'S'},
     ] 
- 
-
+   
+   function Delete(item){
+    const config = {
+      headers: {
+        'accept' : 'application/json',
+            'Content-Type' : 'application/json',
+          Authorization: `Bearer ${token}`,
+      },
+    };
+     axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${item.id}`, config)
+     .then((response)=>{
+      console.log('certo')
+      setLista((preve)=>preve.filter((item)=>item.id !== item.id))
+    })
+    .catch((e)=>{
+      console.log(e)
+    });
+   }
     return<>
     
     {lista.map(item =>(
       <Div1>
         <DivFlex>
            <div> {item.name}</div>
-            { DiasSemana.map((i)=>{
-          <DaySemana > 
-              <ThemeProvider theme={item.days.includes(i.numero) ? 'red' : 'blue'}>
-                <Day>{i.dia}</Day>
-              </ThemeProvider >
-             
-          </DaySemana>
-            })}
+           <DaySemana > 
+            { DiasSemana.map((i)=>(
+                <Day style={{background: item.days.includes(i.numero) ? '' : '#CFCFCF'}} >{i.dia}</Day>
+              ))}
+              </DaySemana>
            
         </DivFlex>
-        <div><BsTrash/></div>
+        <div className='bst' ><BsTrash onClick={()=> Delete (item)}/> </div>
       </Div1>
          
        )) }
